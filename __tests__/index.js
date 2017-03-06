@@ -6,4 +6,12 @@ describe('Solver', () => {
 
     expect(solve).toBeDefined();
   });
+
+  it('throws when the custom dictionary is not an array with at least one value', () => {
+    expect(() => index('')).toThrow();
+  });
+
+  it('accepts a custom dictionary as the first parameter', () => {
+    expect(() => index(['hello', 'word'])).not.toThrow();
+  });
 });
