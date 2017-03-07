@@ -25,7 +25,11 @@ describe('Solver', () => {
     expect(() => solve('abc def ghi')).not.toThrow();
   });
 
-  it('expects an even number of letters to form a matrix, e.g. 3x3, 4x4', () => {
-    //expect(() => solve('abc def ghij')).toThrow();
+  it('expects an even number of letters to form a matrix, e.g. 9 for 3x3, 16 for 4x4', () => {
+    expect(() => solve('abc def ghi')).not.toThrow();
+    expect(() => solve('abcd efgh ijkl mnop')).not.toThrow();
+    expect(() => solve('serspatglinesers')).not.toThrow();
+    expect(() => solve('abc def ghij')).toThrow();
+    expect(() => solve('lotsandlotsofrandomcharactersthatdontformamatrixsize')).toThrow();
   });
 });
