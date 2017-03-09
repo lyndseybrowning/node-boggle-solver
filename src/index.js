@@ -3,7 +3,7 @@ import getDictionary from './getDictionary';
 import config from './config';
 import utils from './utils';
 
-const MIN_SIZE = config.min_size;
+const MIN_SIZE = config.minSize;
 const MIN_MATRIX = MIN_SIZE * MIN_SIZE;
 
 export default function solver(customDictionary = []) {
@@ -36,6 +36,8 @@ export default function solver(customDictionary = []) {
       if(boggleSize === 0) {
         throw(`Please enter an even number of letters to form a Boggle Matrix, e.g. 9 for 3x3, 16 for 4x4 etc...`);
       }
+
+
 
       return [];
     }

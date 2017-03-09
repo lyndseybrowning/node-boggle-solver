@@ -16,7 +16,7 @@ describe('Solver', () => {
     expect(() => solve('')).toThrow();
   });
 
-  it(`expects a minimum of ${config.min_size * config.min_size} letters`, () => {
+  it(`expects a minimum of ${config.minSize * config.minSize} letters`, () => {
     expect(() => solve('abc')).toThrow();
     expect(() => solve('abcdefghi')).not.toThrow();
   });

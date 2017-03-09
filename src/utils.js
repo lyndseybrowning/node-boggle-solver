@@ -9,7 +9,7 @@ export default {
   * @returns Number
   */
   boggleSize(size) {
-    let counter = config.min_size;
+    let counter = config.minSize;
 
     while(counter < size) {
       const matrixSize = counter * counter;
@@ -17,10 +17,10 @@ export default {
       if (matrixSize === size) {
         return counter;
       }
-      
+
       counter++;
-    }    
-    
+    }
+
     return 0;
   }
 };
