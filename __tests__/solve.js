@@ -1,5 +1,6 @@
 import solver from '../src/index';
 import config from '../src/config';
+import './extends';
 
 describe('Solver', () => {
   const customWordList = ['hello', 'world', 'love', 'coding'];
@@ -31,5 +32,9 @@ describe('Solver', () => {
     expect(() => solve('serspatglinesers')).not.toThrow();
     expect(() => solve('abc def ghij')).toThrow();
     expect(() => solve('lotsandlotsofrandomcharactersthatdontformamatrixsize')).toThrow();
+  });
+
+  it('returns an array', () => {
+    expect(solve('abc def ghi')).toBeArray();
   });
 });

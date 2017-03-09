@@ -36,6 +36,8 @@ export default function solver(customDictionary = []) {
       if(boggleSize === 0) {
         throw(`Please enter an even number of letters to form a Boggle Matrix, e.g. 9 for 3x3, 16 for 4x4 etc...`);
       }
+
+      return [];
     }
   };
 };
