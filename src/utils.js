@@ -14,11 +14,12 @@ export default {
     while(counter < size) {
       const matrixSize = counter * counter;
 
-      if(matrixSize === size) {
+      if (matrixSize === size) {
         return counter;
       }
+      
       counter++;
-    }
+    }    
     
     return 0;
   }
