@@ -44,10 +44,8 @@ export default function solver(customDictionary = []) {
       if (boggleSize === 0) {
         throw('Enter a valid number of letters, eg. 9 for 3x3, 16 for 4x4');
       }
-
-
-
-      return [];
+      
+      return solveBoggle(boggle, trie);
     },
   };
 };

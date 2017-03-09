@@ -1,3 +1,3 @@
-export default function solveBoggle(boggle) {
+export default function solveBoggle(boggle, trie) {
   return [];
 };
