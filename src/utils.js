@@ -2,7 +2,8 @@ import config from './config';
 
 export default {
   /**
-  * Determines the size of the matrix based on the number of characters passed in
+  * Determines the size of the matrix
+  * based on the number of characters passed in
   * A 0 (zero) is returned for an invalid size
   * eg. boggleSize(9) // 3
   * eg. boggleSize(10) // 0
@@ -18,9 +19,9 @@ export default {
         return counter;
       }
 
-      counter++;
+      counter += 1;
     }
 
     return 0;
-  }
+  },
 };
