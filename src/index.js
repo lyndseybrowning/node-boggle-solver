@@ -2,6 +2,7 @@ import triePrefixTree from 'trie-prefix-tree';
 import getDictionary from './getDictionary';
 import config from './config';
 import utils from './utils';
+import solveBoggle from './solveBoggle';
 
 const MIN_SIZE = config.minSize;
 const MIN_MATRIX = MIN_SIZE * MIN_SIZE;
@@ -43,6 +44,8 @@ export default function solver(customDictionary = []) {
       if (boggleSize === 0) {
         throw('Enter a valid number of letters, eg. 9 for 3x3, 16 for 4x4');
       }
+
+
 
       return [];
     },
