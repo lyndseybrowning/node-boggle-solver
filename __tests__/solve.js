@@ -34,6 +34,12 @@ describe('Solver', () => {
     expect(() => solve('lotsandlotsofrandomcharactersthatdontformamatrixsize')).toThrow();
   });
 
+  it('throws when the minimum word length is less than specified in the config', () => {
+    const minWordLen = config.minWordLen;
+
+    expect(() => solve('abcdefghi', minWordLen - 1)).toThrow();
+  });
+
   it('returns an array', () => {
     expect(solve('abc def ghi')).toBeArray();
   });

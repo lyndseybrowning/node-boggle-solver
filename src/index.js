@@ -1,10 +1,11 @@
 import getDictionary from './getDictionary';
 import config from './config';
 import utils from './utils';
-import solveBoggle from './solveBoggle';
+import initSolver from './initSolver';
 
 const MIN_SIZE = config.minSize;
 const MIN_MATRIX = MIN_SIZE * MIN_SIZE;
+const MIN_WORD_LEN = config.minWordLen;
 
 export default function solver(customDictionary = []) {
   if (!Array.isArray(customDictionary)) {
@@ -15,7 +16,7 @@ export default function solver(customDictionary = []) {
   const dictionary = isCustomDict ? customDictionary : getDictionary();
 
   return {
-    solve(boggle) {
+    solve(boggle, minWordLen = MIN_WORD_LEN) {
       if (typeof boggle !== 'string' || boggle === '') {
         throw(`
           Expected uppercase, lowercase
@@ -43,7 +44,11 @@ export default function solver(customDictionary = []) {
         throw('Enter a valid number of letters, eg. 9 for 3x3, 16 for 4x4');
       }
 
-      return solveBoggle(boggle, dictionary);
+      if (typeof minWordLen !== 'number' || minWordLen < MIN_WORD_LEN) {
+        throw(`Min word length should be equal to or greater than ${MIN_WORD_LEN}`);
+      }
+
+      return initSolver(boggle, dictionary, minWordLen);
     },
   };
 };
