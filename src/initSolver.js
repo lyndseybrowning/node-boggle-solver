@@ -47,7 +47,10 @@ export default function initSolver(boggle, boggleSize, dictionary, minWordLen) {
       const letter = boggleMatrix[x][y];
 
       // recurse each adjacent letter
-      solve(word + letter, adjacent, coords, used);
+      // but only if it is a valid prefix in the trie
+      if(trie.isPrefix(word + letter)) {
+        solve(word + letter, adjacent, coords, used);
+      }
     });
   };
 
