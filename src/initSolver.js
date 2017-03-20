@@ -63,9 +63,9 @@ export default function initSolver(boggle, boggleSize, dictionary, minWordLen) {
 
   // solve each letter in turn
   boggleMatrix.forEach((row, rowIndex) => {
-   row.forEach((col, colIndex) => {
-     solve(boggleMatrix[rowIndex][colIndex], [rowIndex, colIndex]);
-   });
+    row.forEach((col, colIndex) => {
+      solve(boggleMatrix[rowIndex][colIndex], [rowIndex, colIndex]);
+    });
   });
 
   return results;

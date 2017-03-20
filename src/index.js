@@ -18,14 +18,14 @@ export default function solver(customDictionary = []) {
   return {
     solve(boggle, minWordLen = MIN_WORD_LEN) {
       if (typeof boggle !== 'string' || boggle === '') {
-        throw(`Use uppercase, lowercase or space-delimited characters e.g. solve('ABCDEFGHI')`);
+        throw('Use uppercase, lowercase or space-delimited characters');
       }
 
-      const boggleLetters = (/\s/.test(boggle)) ? boggle.replace(/\s/g, '') : boggle;
-      const numLetters = boggleLetters.length;
+      const letters = /\s/.test(boggle) ? boggle.replace(/\s/g, '') : boggle;
+      const numLetters = letters.length;
 
       if (numLetters < MIN_MATRIX) {
-        throw(`Enter ${MIN_MATRIX} letters or more for a ${MIN_SIZE}x${MIN_SIZE} solver`);
+        throw(`Enter min ${MIN_MATRIX} letters`);
       }
 
       const boggleSize = utils.boggleSize(numLetters);
@@ -35,10 +35,10 @@ export default function solver(customDictionary = []) {
       }
 
       if (typeof minWordLen !== 'number' || minWordLen < MIN_WORD_LEN) {
-        throw(`Min word length should be equal to or greater than ${MIN_WORD_LEN}`);
+        throw(`minWordLen should be greater than or equal to ${MIN_WORD_LEN}`);
       }
 
-      return initSolver(boggleLetters, boggleSize, dictionary, minWordLen);
+      return initSolver(letters, boggleSize, dictionary, minWordLen);
     },
   };
 };

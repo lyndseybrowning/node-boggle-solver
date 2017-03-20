@@ -39,22 +39,22 @@ export default {
   },
 
   getBoggleMatrix(size, letters) {
-     const matrix = [];
-     let counter = 0;
+    const matrix = [];
+    let counter = 0;
 
-     [].reduce.call(letters, (acc, letter, index) => {
-       counter++;
-       acc.push(letter);
+    [].reduce.call(letters, (acc, letter, index) => {
+      counter += 1;
+      acc.push(letter);
 
-       if (counter === size) {
-         matrix.push(acc);
-         acc = [];
-         counter = 0;
-       }
+      if (counter === size) {
+        matrix.push(acc);
+        acc = [];
+        counter = 0;
+      }
 
-       return acc;
-     }, []);
+      return acc;
+    }, []);
 
-     return matrix;
-   },
+    return matrix;
+  },
 };
