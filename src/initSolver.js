@@ -3,6 +3,8 @@ import config from './config';
 import findAdjacents from './findAdjacents';
 import utils from './utils';
 
+const MIN_WORD_LEN = config.minWordLen;
+
 export default function initSolver(boggle, boggleSize, dictionary, minWordLen) {
   // store dictionary
   const trie = triePrefixTree(dictionary);
@@ -13,11 +15,15 @@ export default function initSolver(boggle, boggleSize, dictionary, minWordLen) {
   // create the results object that will contain
   // a word and corresponding co-ordinates
   const results = [];
+  const wordList = [];
 
   // recursive solve algorithm
   const solve = function(word, position, deepCoords = [], deepUsed = []) {
     const [row, col] = position;
     const wordLen = word.length;
+
+    // create new copies of both coords and used positions
+    // for each letter
     const coords = deepCoords.slice();
     const used = deepUsed.slice();
 
@@ -25,12 +31,13 @@ export default function initSolver(boggle, boggleSize, dictionary, minWordLen) {
     coords.push(position);
 
     // check if the current word is valid
-    if (wordLen >= config.minWordLen) {
+    if (wordLen >= MIN_WORD_LEN) {
       const isValid = trie.hasWord(word);
-      const isFound = results.includes(word);
+      const isFound = wordList.includes(word);
 
       if (isValid && !isFound) {
         results.push({ word, coords });
+        wordList.push(word);
 
         // reset co-ordinates ready for the next word
         deepCoords = [];
@@ -41,14 +48,14 @@ export default function initSolver(boggle, boggleSize, dictionary, minWordLen) {
     const adjacents = findAdjacents(position, boggleSize, deepUsed);
 
     adjacents.forEach((adjacent) => {
-    	used.push(position);
+      used.push(position);
 
       const [x,y] = adjacent;
       const letter = boggleMatrix[x][y];
 
       // recurse each adjacent letter
       // but only if it is a valid prefix in the trie
-      if(trie.isPrefix(word + letter)) {
+      if (trie.isPrefix(word + letter)) {
         solve(word + letter, adjacent, coords, used);
       }
     });

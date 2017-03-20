@@ -45,4 +45,12 @@ describe('Solver', () => {
     expect(actual).toBeArray();
     expect(actual.length).toEqual(1);
   });
+
+  it('returns a valid word list', () => {
+    const customSolver = solver();
+    const actual = customSolver.solve('abcdefghi');
+    const list = actual.map(item => item.word);
+
+    expect(list.length).toEqual(25);
+  });
 });

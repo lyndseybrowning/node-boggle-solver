@@ -4,7 +4,7 @@
   "description": "Solve boggle grids",
   "main": "dist/index.js",
   "scripts": {
-    "build": "babel --copy-files va--out-dir dist src",
+    "build": "babel --copy-files --out-dir dist src",
     "prebuild": "rimraf dist",
     "lint": "eslint src",
     "report-coverage": "codecov",
