@@ -37,4 +37,24 @@ export default {
       });
     });
   },
+
+  getBoggleMatrix(size, letters) {
+     const matrix = [];
+     let counter = 0;
+
+     [].reduce.call(letters, (acc, letter, index) => {
+       counter++;
+       acc.push(letter);
+
+       if (counter === size) {
+         matrix.push(acc);
+         acc = [];
+         counter = 0;
+       }
+
+       return acc;
+     }, []);
+
+     return matrix;
+   },
 };
