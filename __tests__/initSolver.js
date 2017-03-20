@@ -3,6 +3,6 @@ import initSolver from '../src/initSolver';
 
 describe('The Boggle solver', () => {
   it('returns an array', () => {
-    expect(initSolver('abc def ghi', ['hello', 'world'])).toBeArray();
+    expect(initSolver('abcdefghi', 3, ['badge', 'bad', 'feh', 'dogs'])).toBeArray();
   });
 });

@@ -14,4 +14,8 @@ describe('Solver', () => {
   it('accepts a custom dictionary as the first parameter', () => {
     expect(() => index(['hello', 'word'])).not.toThrow();
   });
+
+  it('throws when the number of letters passed does not form a valid matrix', () => {
+    expect(() => solve('abc def ghij')).toThrow();
+  });
 });

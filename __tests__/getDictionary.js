@@ -14,7 +14,7 @@ describe('Getting the default dictionary', () => {
   });
 
   it('returns an empty array when the dictionary file is not found', () => {
-    const actual = getDictionary('');
+    const actual = getDictionary('lib/test.txt');
     const expected = [];
 
     expect(actual).toEqual(expected);
