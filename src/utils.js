@@ -24,4 +24,17 @@ export default {
 
     return 0;
   },
+
+  /**
+  * Checks if the target exists in source
+  * Both are 2-d arrays e.g. arrayMatch([[0, 0]], [0, 0]); => true
+  * @returns Boolean
+  */
+  arrayMatch(source, target) {
+    return source.some((item) => {
+      return item.every((x, index) => {
+        return x === target[index];
+      });
+    });
+  },
 };
