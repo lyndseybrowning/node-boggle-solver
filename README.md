@@ -1,5 +1,10 @@
 # Node Boggle Solver
 
-- Allow predicate to be passed to solver that will filter the returned list e.g. p => p.length === 5;
-- Pass the resulting word list to a callback function, if one is specified.
-- Pass additional methods to callback that act on the result list e.g contains.
+- Use callback methods
+    - word list
+    - word list + co-ordinates
+    - method: contains (letters in any order)
+    - method: containsWord (validate full word)
+    - method: startsWith (array of matches)
+    - method: endsWith (array of matches)
+    - method: lengthOf (array of matches)
