@@ -5,6 +5,9 @@ import utils from './utils';
 const MIN_WORD_LEN = config.minWordLen;
 
 export default function initSolver(boggle, boggleSize, trie, minWordLen) {
+  // allow the user to customise the minimum word length returned
+  // the default is 3
+  minWordLen = minWordLen || MIN_WORD_LEN;
 
   // create the matrix
   const boggleMatrix = utils.getBoggleMatrix(boggleSize, boggle);
@@ -28,7 +31,7 @@ export default function initSolver(boggle, boggleSize, trie, minWordLen) {
     coords.push(position);
 
     // check if the current word is valid
-    if (wordLen >= MIN_WORD_LEN) {
+    if (wordLen >= minWordLen) {
       const isValid = trie.hasWord(word);
       const isFound = wordList.includes(word);
 
