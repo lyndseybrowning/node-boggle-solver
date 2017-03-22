@@ -1,13 +1,10 @@
-import triePrefixTree from 'trie-prefix-tree';
 import config from './config';
 import findAdjacents from './findAdjacents';
 import utils from './utils';
 
 const MIN_WORD_LEN = config.minWordLen;
 
-export default function initSolver(boggle, boggleSize, dictionary, minWordLen) {
-  // store dictionary
-  const trie = triePrefixTree(dictionary);
+export default function initSolver(boggle, boggleSize, trie, minWordLen) {
 
   // create the matrix
   const boggleMatrix = utils.getBoggleMatrix(boggleSize, boggle);
@@ -47,17 +44,22 @@ export default function initSolver(boggle, boggleSize, dictionary, minWordLen) {
     // find adjacent letters in the matrix
     const adjacents = findAdjacents(position, boggleSize, deepUsed);
 
-    adjacents.forEach((adjacent) => {
+    // filter adjacents that are not valid prefixes
+    const validAdjacents = adjacents.filter((adjacent) => {
+      const [x, y] = adjacent;
+      const isPrefix = trie.isPrefix(word + boggleMatrix[x][y]);
+
+      return isPrefix;
+    });
+
+    validAdjacents.forEach((adjacent) => {
       used.push(position);
 
-      const [x,y] = adjacent;
+      const [x, y] = adjacent;
       const letter = boggleMatrix[x][y];
+      const currentWord = word + letter;
 
-      // recurse each adjacent letter
-      // but only if it is a valid prefix in the trie
-      if (trie.isPrefix(word + letter)) {
-        solve(word + letter, adjacent, coords, used);
-      }
+      solve(currentWord, adjacent, coords, used);
     });
   };
 

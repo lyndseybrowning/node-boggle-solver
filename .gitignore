@@ -6,3 +6,4 @@ dist
 package
 package */
 *.tgz
+test.js

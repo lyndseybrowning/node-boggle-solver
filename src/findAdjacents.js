@@ -4,7 +4,7 @@ const directions = [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]];
 
 export default function findAdjacents(position, size, filter = []) {
   const allDirections = directions.slice(0);
-  const [row,col] = position;
+  const [row, col] = position;
 
   return allDirections.reduce((adjacents, direction) => {
     const [x, y] = direction;

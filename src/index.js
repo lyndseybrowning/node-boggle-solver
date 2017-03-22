@@ -1,3 +1,4 @@
+import triePrefixTree from 'trie-prefix-tree';
 import getDictionary from './getDictionary';
 import config from './config';
 import utils from './utils';
@@ -14,6 +15,7 @@ export default function solver(customDictionary = []) {
 
   const isCustomDict = customDictionary.length > 0;
   const dictionary = isCustomDict ? customDictionary : getDictionary();
+  const trie = triePrefixTree(dictionary);
 
   return {
     solve(boggle, minWordLen = MIN_WORD_LEN) {
@@ -25,7 +27,7 @@ export default function solver(customDictionary = []) {
       const numLetters = letters.length;
 
       if (numLetters < MIN_MATRIX) {
-        throw(`Enter min ${MIN_MATRIX} letters`);
+        throw(`Enter ${MIN_MATRIX} letters or more`);
       }
 
       const boggleSize = utils.boggleSize(numLetters);
@@ -38,7 +40,7 @@ export default function solver(customDictionary = []) {
         throw(`minWordLen should be greater than or equal to ${MIN_WORD_LEN}`);
       }
 
-      return initSolver(letters, boggleSize, dictionary, minWordLen);
+      return initSolver(letters, boggleSize, trie, minWordLen);
     },
   };
 };
