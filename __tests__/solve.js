@@ -5,42 +5,49 @@ import './extends';
 describe('Solver', () => {
   const customWordList = ['hello', 'world', 'love', 'coding'];
   const { solve } = solver(customWordList);
+  const callback = (err, result) => {
+    if(err) {
+      throw(err);
+    }
+  };
 
-  it('throws when the first parameter is not a string', () => {
-    expect(() => solve(123)).toThrow();
-    expect(() => solve(undefined)).toThrow();
-    expect(() => solve([])).toThrow();
+  it('expects a callback function', () => {
+    expect(() => solve('abc', null)).toThrow();
+  });
+
+  it('returns the error callback when the first parameter is not a string', () => {
+    expect(() => solve(123, callback)).toThrow();
   });
 
   it('throws when an empty string is passed as the first parameter', () => {
-    expect(() => solve('')).toThrow();
+    expect(() => solve('', callback)).toThrow();
   });
 
   it(`expects a minimum of ${config.minSize * config.minSize} letters`, () => {
-    expect(() => solve('abc')).toThrow();
-    expect(() => solve('abcdefghi')).not.toThrow();
+    expect(() => solve('abc', callback)).toThrow();
+    expect(() => solve('abcdefghi', callback)).not.toThrow();
   });
 
   it('accepts space-delimited letters', () => {
-    expect(() => solve('abc def')).toThrow();
-    expect(() => solve('abc def ghi')).not.toThrow();
+    expect(() => solve('abc def', callback)).toThrow();
+    expect(() => solve('abc def ghi', callback)).not.toThrow();
   });
 
   it('expects an even number of letters to form a matrix, e.g. 9 for 3x3, 16 for 4x4', () => {
-    expect(() => solve('abc def ghi')).not.toThrow();
-    expect(() => solve('abcdefghijklmnop')).not.toThrow();
-    expect(() => solve('abc def ghij')).toThrow();
-    expect(() => solve('lotsandlotsofrandomcharactersthatdontformamatrixsize')).toThrow();
+    expect(() => solve('abc def ghi', callback)).not.toThrow();
+    expect(() => solve('abcdefghijklmnop', callback)).not.toThrow();
+    expect(() => solve('abc def ghij', callback)).toThrow();
+    expect(() => solve('lotsandlotsofrandomcharactersthatdontformamatrixsize', callback)).toThrow();
   });
 
   it('throws when the minimum word length is less than specified in the config', () => {
     const minWordLen = config.minWordLen;
 
-    expect(() => solve('abcdefghi', minWordLen - 1)).toThrow();
+    expect(() => solve('abcdefghi', callback, minWordLen - 1)).toThrow();
   });
 
   it('returns an array', () => {
-    const actual = solve('lov eef ghi');
+    const actual = solve('lov eef ghi', callback);
 
     expect(actual).toBeArray();
     expect(actual.length).toEqual(1);
@@ -48,7 +55,7 @@ describe('Solver', () => {
 
   it('returns a valid word list', () => {
     const customSolver = solver();
-    const actual = customSolver.solve('abcdefghi');
+    const actual = customSolver.solve('abcdefghi', callback);
     const list = actual.map(item => item.word);
 
     expect(list.length).toEqual(25);

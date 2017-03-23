@@ -19,9 +19,13 @@ export default function solver(custom = []) {
   const trie = isCustom ? triePrefixTree(custom) : DEFAULT_TRIE;
 
   return {
-    solve(boggle, minWordLen = MIN_WORD_LEN) {
+    solve(boggle, callback, minWordLen = MIN_WORD_LEN) {
+      if(!callback || typeof callback !== 'function') {
+        throw('Expected callback function');
+      }
+
       if (typeof boggle !== 'string' || boggle === '') {
-        throw('Use uppercase, lowercase or space-delimited characters');
+        callback('Use uppercase, lowercase or space-delimited characters');
       }
 
       const letters = /\s/.test(boggle) ? boggle.replace(/\s/g, '') : boggle;
@@ -34,11 +38,11 @@ export default function solver(custom = []) {
       const boggleSize = utils.boggleSize(numLetters);
 
       if (boggleSize === 0) {
-        throw('Enter a valid number of letters, eg. 9 for 3x3, 16 for 4x4');
+        callback('Enter a valid number of letters, eg. 9 for 3x3, 16 for 4x4');
       }
 
       if (typeof minWordLen !== 'number' || minWordLen < MIN_WORD_LEN) {
-        throw(`minWordLen should be greater than or equal to ${MIN_WORD_LEN}`);
+        callback(`minWordLen should be greater than or equal to ${MIN_WORD_LEN}`);
       }
 
       return initSolver(letters, boggleSize, trie, minWordLen);
