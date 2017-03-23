@@ -7,15 +7,16 @@ import initSolver from './initSolver';
 const MIN_SIZE = config.minSize;
 const MIN_MATRIX = MIN_SIZE * MIN_SIZE;
 const MIN_WORD_LEN = config.minWordLen;
+const DEFAULT_DICTIONARY = getDictionary();
+const DEFAULT_TRIE = triePrefixTree(DEFAULT_DICTIONARY);
 
-export default function solver(customDictionary = []) {
-  if (!Array.isArray(customDictionary)) {
+export default function solver(custom = []) {
+  if (!Array.isArray(custom)) {
     throw('Custom dictionary should be an array with at least one value');
   }
 
-  const isCustomDict = customDictionary.length > 0;
-  const dictionary = isCustomDict ? customDictionary : getDictionary();
-  const trie = triePrefixTree(dictionary);
+  const isCustom = custom.length > 0;
+  const trie = isCustom ? triePrefixTree(custom) : DEFAULT_TRIE;
 
   return {
     solve(boggle, minWordLen = MIN_WORD_LEN) {
