@@ -32,7 +32,7 @@ export default function solver(custom = []) {
       const numLetters = letters.length;
 
       if (numLetters < MIN_MATRIX) {
-        throw(`Enter ${MIN_MATRIX} letters or more`);
+        callback(`Enter ${MIN_MATRIX} letters or more`);
       }
 
       const boggleSize = utils.boggleSize(numLetters);
