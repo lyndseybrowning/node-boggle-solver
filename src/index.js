@@ -20,7 +20,7 @@ export default function solver(custom = []) {
 
   return {
     solve(boggle, callback, minWordLen = MIN_WORD_LEN) {
-      if(!callback || typeof callback !== 'function') {
+      if (!callback || typeof callback !== 'function') {
         throw('Expected callback function');
       }
 
@@ -42,7 +42,7 @@ export default function solver(custom = []) {
       }
 
       if (typeof minWordLen !== 'number' || minWordLen < MIN_WORD_LEN) {
-        callback(`minWordLen should be greater than or equal to ${MIN_WORD_LEN}`);
+        callback(`Minimum word length is ${MIN_WORD_LEN}`);
       }
 
       const result = initSolver(letters, boggleSize, trie, minWordLen);
