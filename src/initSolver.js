@@ -1,6 +1,7 @@
 import config from './config';
 import findAdjacents from './findAdjacents';
 import utils from './utils';
+import triePrefixTree from 'trie-prefix-tree';
 
 const MIN_WORD_LEN = config.minWordLen;
 
@@ -12,10 +13,10 @@ export default function initSolver(boggle, boggleSize, trie, minWordLen) {
   // create the matrix
   const boggleMatrix = utils.getBoggleMatrix(boggleSize, boggle);
 
-  // create the results object that will contain
+  // create the full object that will contain
   // a word and corresponding co-ordinates
-  const results = [];
-  const wordList = [];
+  const full = [];
+  const list = [];
 
   // recursive solve algorithm
   const solve = function(word, position, deepCoords = [], deepUsed = []) {
@@ -33,11 +34,11 @@ export default function initSolver(boggle, boggleSize, trie, minWordLen) {
     // check if the current word is valid
     if (wordLen >= minWordLen) {
       const isValid = trie.hasWord(word);
-      const isFound = wordList.includes(word);
+      const isFound = list.includes(word);
 
       if (isValid && !isFound) {
-        results.push({ word, coords });
-        wordList.push(word);
+        full.push({ word, coords });
+        list.push(word);
 
         // reset co-ordinates ready for the next word
         deepCoords = [];
@@ -73,5 +74,35 @@ export default function initSolver(boggle, boggleSize, trie, minWordLen) {
     });
   });
 
-  return results;
+  // create a trie from the resulting word list
+  const resultTrie = triePrefixTree(list);
+
+  return {
+    full,
+    list,
+    hasWord(word) {
+      return resultTrie.hasWord(word);
+    },
+
+    contains(letters) {
+      const arr = Array.from(letters);
+      return list.filter(word => arr.every(letter => word.includes(letter)));
+    },
+
+    startsWith(prefix) {
+      return resultTrie.getPrefix(prefix);
+    },
+
+    endsWith(suffix) {
+      return list.filter((word) => {
+        const wordLen = word.length;
+        const startAt = wordLen - suffix.length;
+        return word.substring(startAt, wordLen) === suffix.toLowerCase();
+      });
+    },
+
+    lengthOf(length) {
+      return list.filter(word => word.length === length);
+    },
+  };
 };

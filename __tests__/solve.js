@@ -6,7 +6,7 @@ describe('Solver', () => {
   const customWordList = ['hello', 'world', 'love', 'coding'];
   const { solve } = solver(customWordList);
   const callback = (err, result) => {
-    if(err) {
+    if (err) {
       throw(err);
     }
   };
@@ -46,18 +46,36 @@ describe('Solver', () => {
     expect(() => solve('abcdefghi', callback, minWordLen - 1)).toThrow();
   });
 
-  it('returns an array', () => {
-    const actual = solve('lov eef ghi', callback);
+  it('returns an object', (done) => {
+    const defaultSolver = solver();
 
-    expect(actual).toBeArray();
-    expect(actual.length).toEqual(1);
-  });
+    defaultSolver.solve('abcdefghi', (err, result) => {
+      if(err) {
+        return done.fail(err);
+      }
 
-  it('returns a valid word list', () => {
-    const customSolver = solver();
-    const actual = customSolver.solve('abcdefghi', callback);
-    const list = actual.map(item => item.word);
+      expect(result).toBeDefined();
+      expect(result.full).toBeDefined();
+      expect(result.list).toBeDefined();
 
-    expect(list.length).toEqual(25);
+      expect(result.contains).toBeDefined();
+      expect(result.contains('abd')).toBeArray();
+
+      expect(result.hasWord).toBeDefined();
+      expect(result.hasWord('badge')).toEqual(true);
+      expect(result.hasWord('blahblah')).toEqual(false);
+
+      expect(result.startsWith).toBeDefined();
+      expect(result.startsWith('b')).toBeArray();
+      expect(result.startsWith('zzzz').length).toEqual(0);
+
+      expect(result.endsWith).toBeDefined();
+      expect(result.endsWith('d').length).toBeGreaterThan(1);
+
+      expect(result.lengthOf).toBeDefined();
+      expect(result.lengthOf(4)).toBeArray();
+
+      done();
+    });
   });
 });

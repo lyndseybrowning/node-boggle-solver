@@ -45,7 +45,9 @@ export default function solver(custom = []) {
         callback(`minWordLen should be greater than or equal to ${MIN_WORD_LEN}`);
       }
 
-      return initSolver(letters, boggleSize, trie, minWordLen);
+      const result = initSolver(letters, boggleSize, trie, minWordLen);
+
+      return callback(null, result);
     },
   };
 };
