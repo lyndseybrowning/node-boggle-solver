@@ -91,7 +91,7 @@ solver.solve('abc def ghi', function(err, result) { });
 solver.solve('sers patl gine ress', function(err, result) { });
 
 // solve a 5x5 grid
-solver.solve('rscls deiae gnrp iaeso lmidn', function(err, result) { });
+solver.solve('rscls deiae gnrps iaeso lmidn', function(err, result) { });
 ```
 
 The first argument of the callback function is reserved for an error object. If an error occurs, it will be returned by the error argument.  
