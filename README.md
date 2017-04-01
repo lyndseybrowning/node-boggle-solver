@@ -3,6 +3,7 @@
 [![Travis Build](https://img.shields.io/travis/lyndseybrowning/node-boggle-solver.svg?style=flat-square)](https://travis-ci.org/lyndseybrowning/node-boggle-solver)
 [![codecov coverage](https://img.shields.io/codecov/c/github/lyndseybrowning/node-boggle-solver.svg?style=flat-square)](https://codecov.io/github/lyndseybrowning/node-boggle-solver)
 [![downloads](https://img.shields.io/npm/dm/node-boggle-solver.svg?style=flat-square)](http://npm-stat.com/charts.html?package=node-boggle-solver&from=2015-08-01)
+[![version](https://img.shields.io/npm/v/node-boggle-solver.svg?style=flat-square)](http://npm.im/node-boggle-solver)
 [![MIT License](https://img.shields.io/npm/l/node-boggle-solver.svg?style=flat-square)](http://opensource.org/licenses/MIT)
 
 [Boggle](https://en.wikipedia.org/wiki/Boggle) is a game in which players try to find as many words as possible in a 4x4 grid of letters.
