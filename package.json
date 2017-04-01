@@ -1,6 +1,6 @@
 {
   "name": "node-boggle-solver",
-  "version": "0.0.0-development",
+  "version": "1.0.0",
   "description": "Solve boggle grids",
   "main": "dist/index.js",
   "scripts": {
@@ -12,6 +12,7 @@
     "test-coverage": "jest --coverage",
     "test-watch": "jest --watch",
     "commit": "git-cz",
+    "doctoc": "doctoc README.md",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
@@ -20,9 +21,9 @@
   },
   "keywords": [
     "boggle",
-    "javascript",
-    "node",
-    "solver"
+    "boggle solver",
+    "words",
+    "dictionary"
   ],
   "files": [
     "dist",
@@ -53,6 +54,7 @@
     "semantic-release": "^6.3.2"
   },
   "dependencies": {
+    "doctoc": "1.3.0",
     "trie-prefix-tree": "1.3.0"
   },
   "jest": {
