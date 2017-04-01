@@ -115,7 +115,7 @@ solver.solve('abc def ghi', function(err, result) {
   listWithCoords[0]; // { word: 'badge', coords: [ [0, 1], [0, 0], [1, 0], [2, 0], [1, 1] ] }
 
   result.list.length; // 25
-  result.list); // ['abed', 'bad', 'bade', 'badge', ...]
+  result.list; // ['abed', 'bad', 'bade', 'badge', ...]
 
   result.hasWord('badge'); // true
   result.hasWord('badges'); // false
