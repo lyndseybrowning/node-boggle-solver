@@ -1,77 +1,82 @@
 {
-  "name": "node-boggle-solver",
-  "version": "0.0.0-development",
-  "description": "Solve boggle grids",
-  "main": "dist/index.js",
-  "scripts": {
-    "build": "babel --copy-files --out-dir dist src",
-    "prebuild": "rimraf dist",
-    "lint": "eslint src",
-    "report-coverage": "codecov",
-    "test": "jest",
-    "test-coverage": "jest --coverage",
-    "test-watch": "jest --watch",
-    "commit": "git-cz",
-    "doctoc": "doctoc README.md",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/lyndseybrowning/node-boggle-solver.git"
-  },
-  "keywords": [
-    "boggle",
-    "boggle solver",
-    "words",
-    "dictionary"
-  ],
-  "files": [
-    "dist",
-    "README.md"
-  ],
-  "author": "Lyndsey Browning <lbrowning86@gmail.com> (http://lyndseyb.co.uk/)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/lyndseybrowning/node-boggle-solver/issues"
-  },
-  "homepage": "https://github.com/lyndseybrowning/node-boggle-solver#readme",
-  "devDependencies": {
-    "babel-cli": "^6.22.2",
-    "babel-core": "^6.22.1",
-    "babel-jest": "18.0.0",
-    "babel-plugin-add-module-exports": "0.2.1",
-    "babel-plugin-array-includes": "2.0.3",
-    "babel-plugin-transform-object-rest-spread": "^6.22.0",
-    "babel-preset-env": "1.1.8",
-    "babel-preset-es2015": "^6.22.0",
-    "codecov": "1.0.1",
-    "commitizen": "2.9.6",
-    "cz-conventional-changelog": "1.2.0",
-    "eslint": "^3.15.0",
-    "ghooks": "2.0.0",
-    "jest": "^18.1.0",
-    "rimraf": "^2.5.4",
-    "semantic-release": "^6.3.2"
-  },
-  "dependencies": {
-    "trie-prefix-tree": "1.3.0"
-  },
-  "jest": {
-    "coverageDirectory": "./coverage",
-    "collectCoverage": true,
-    "testPathIgnorePatterns": [
-      "<rootDir>/__tests__/extends/"
-    ],
-    "transform": {
-      ".*": "<rootDir>/node_modules/babel-jest"
+    "name": "node-boggle-solver",
+    "version": "0.0.0-development",
+    "description": "Solve boggle grids",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "babel --copy-files --out-dir dist src",
+        "prebuild": "rimraf dist",
+        "lint": "eslint src",
+        "report-coverage": "codecov",
+        "test": "jest",
+        "test-coverage": "jest --coverage",
+        "test-watch": "jest --watch",
+        "commit": "git-cz",
+        "doctoc": "doctoc README.md",
+        "semantic-release": "semantic-release pre && npm publish && semantic-release post"
     },
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "es6"
-    ]
-  },
-  "czConfig": {
-    "path": "node_modules/cz-conventional-changelog"
-  }
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/lyndseybrowning/node-boggle-solver.git"
+    },
+    "keywords": [
+        "boggle",
+        "boggle solver",
+        "words",
+        "dictionary"
+    ],
+    "files": [
+        "dist",
+        "README.md"
+    ],
+    "author": "Lyndsey Browning <lbrowning86@gmail.com> (http://lyndseyb.co.uk/)",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/lyndseybrowning/node-boggle-solver/issues"
+    },
+    "homepage": "https://github.com/lyndseybrowning/node-boggle-solver#readme",
+    "devDependencies": {
+        "babel-cli": "^6.22.2",
+        "babel-core": "^6.22.1",
+        "babel-jest": "18.0.0",
+        "babel-plugin-add-module-exports": "0.2.1",
+        "babel-plugin-array-includes": "2.0.3",
+        "babel-plugin-transform-object-rest-spread": "^6.22.0",
+        "babel-preset-env": "1.1.8",
+        "babel-preset-es2015": "^6.22.0",
+        "codecov": "1.0.1",
+        "commitizen": "2.9.6",
+        "cz-conventional-changelog": "1.2.0",
+        "eslint": "7.21.0",
+        "eslint-config-standard": "16.0.2",
+        "eslint-plugin-import": "2.22.1",
+        "eslint-plugin-jest": "24.1.5",
+        "eslint-plugin-node": "11.1.0",
+        "eslint-plugin-promise": "4.3.1",
+        "ghooks": "2.0.0",
+        "jest": "^18.1.0",
+        "rimraf": "^2.5.4",
+        "semantic-release": "^6.3.2"
+    },
+    "dependencies": {
+        "trie-prefix-tree": "1.3.0"
+    },
+    "jest": {
+        "coverageDirectory": "./coverage",
+        "collectCoverage": true,
+        "testPathIgnorePatterns": [
+            "<rootDir>/__tests__/extends/"
+        ],
+        "transform": {
+            ".*": "<rootDir>/node_modules/babel-jest"
+        },
+        "moduleFileExtensions": [
+            "js",
+            "json",
+            "es6"
+        ]
+    },
+    "czConfig": {
+        "path": "node_modules/cz-conventional-changelog"
+    }
 }

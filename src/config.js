@@ -1,7 +1,7 @@
 export default {
-  dictionary: {
-    sowpods: 'lib/sowpods.txt',
-  },
-  minSize: 3,
-  minWordLen: 3,
+    dictionary: {
+        sowpods: "lib/sowpods.txt",
+    },
+    minSize: 3,
+    minWordLen: 3,
 };
