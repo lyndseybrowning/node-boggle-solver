@@ -1,61 +1,49 @@
 import triePrefixTree from "trie-prefix-tree";
-import getDictionary from "./getDictionary";
+
 import config from "./config";
 import utils from "./utils";
 import initSolver from "./initSolver";
 
-const MIN_SIZE = config.minSize;
-const MIN_MATRIX = MIN_SIZE * MIN_SIZE;
+const GRID_SIZE = config.minSize;
+const MIN_LETTERS_ALLOWED = GRID_SIZE * GRID_SIZE;
 const MIN_WORD_LEN = config.minWordLen;
-const DEFAULT_DICTIONARY = getDictionary();
-const DEFAULT_TRIE = triePrefixTree(DEFAULT_DICTIONARY);
 
-export default function solver(custom = []) {
-    if (!Array.isArray(custom)) {
-        throw new Error(
-            "Custom dictionary should be an array with at least one value",
-        );
+function solver(dictionary) {
+    if (!Array.isArray(dictionary)) {
+        throw new Error("Custom dictionary should be an array with at least one value");
     }
 
-    const isCustom = custom.length > 0;
-    const trie = isCustom ? triePrefixTree(custom) : DEFAULT_TRIE;
+    const trie = triePrefixTree(dictionary);
 
     return {
-        solve(boggle, callback, minWordLen = MIN_WORD_LEN) {
-            if (!callback || typeof callback !== "function") {
-                throw new Error("Expected callback function");
+        solve(string, minWordLen = MIN_WORD_LEN) {
+            if (typeof string !== "string" || string === "") {
+                throw new Error("Use uppercase, lowercase or space-delimited characters");
             }
 
-            if (typeof boggle !== "string" || boggle === "") {
-                callback(
-                    "Use uppercase, lowercase or space-delimited characters",
-                );
-            }
-
-            const letters = /\s/.test(boggle)
-                ? boggle.replace(/\s/g, "")
-                : boggle;
+            const isSpaceDelimited = /\s/.test(string);
+            const letters = isSpaceDelimited ? string.replace(/\s/g, "") : string;
             const numLetters = letters.length;
 
-            if (numLetters < MIN_MATRIX) {
-                callback(`Enter ${MIN_MATRIX} letters or more`);
+            if (numLetters < MIN_LETTERS_ALLOWED) {
+                throw new Error(`Enter ${MIN_LETTERS_ALLOWED} letters or more`);
             }
 
             const boggleSize = utils.boggleSize(numLetters);
 
             if (boggleSize === 0) {
-                callback(
-                    "Enter a valid number of letters, eg. 9 for 3x3, 16 for 4x4",
-                );
+                throw new Error("Enter a valid number of letters, eg. 9 for 3x3, 16 for 4x4");
             }
 
             if (typeof minWordLen !== "number" || minWordLen < MIN_WORD_LEN) {
-                callback(`Minimum word length is ${MIN_WORD_LEN}`);
+                throw new Error(`Minimum word length is ${MIN_WORD_LEN}`);
             }
 
             const result = initSolver(letters, boggleSize, trie, minWordLen);
 
-            return callback(null, result);
+            return result;
         },
     };
 }
+
+export default solver;

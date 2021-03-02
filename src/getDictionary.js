@@ -1,18 +1,10 @@
-import fs from "fs";
-import path from "path";
-import config from "./config";
+async function getDefaultDictionary() {
+    const response = await globalThis.fetch("./lib/sowpods.txt");
+    const text = await response.text();
+    //const dictionary = text.split("\n").map((str) => str.toLowerCase());
 
-export default function getDictionary(dictionary = config.dictionary.sowpods) {
-    try {
-        const file = path.join(__dirname, dictionary);
-        const array = fs
-            .readFileSync(file)
-            .toString()
-            .split("\n")
-            .map(str => str.toLowerCase());
+    console.log(text);
+    return [];
+}
 
-        return array;
-    } catch (err) {
-        return [];
-    }
-};
+export default getDefaultDictionary;

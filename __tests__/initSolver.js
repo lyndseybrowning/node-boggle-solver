@@ -1,4 +1,3 @@
-import "./extends";
 import initSolver from "../src/initSolver";
 import triePrefixTree from "trie-prefix-tree";
 
