@@ -1,5 +1,4 @@
 import getDictionary from "../src/getDictionary";
-import config from "../src/config";
 
 describe("Getting the default dictionary", () => {
     it("returns an array", () => {
